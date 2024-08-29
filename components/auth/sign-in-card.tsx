@@ -11,11 +11,16 @@ import { Separator } from "@/components/ui/separator";
 
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { SignInFlow } from "./types";
 
-export const SignInCard = () => {
+interface SignInCardProps {
+  setState: (state: SignInFlow) => void;
+}
+
+export const SignInCard = ({ setState }: SignInCardProps) => {
   return (
     <Card className="h-full w-full p-8">
-      <CardHeader className="px-0 pt-0">
+      <CardHeader className="select-none px-0 pt-0">
         <CardTitle>Log in to continue</CardTitle>
         <CardDescription>
           Use your email or another service to continue
@@ -57,8 +62,6 @@ export const SignInCard = () => {
             <FcGoogle className="absolute left-2.5 size-5" />
             Continue with Google
           </Button>
-        </div>
-        <div className="flex flex-col gap-y-2.5">
           <Button
             disabled={false}
             onClick={() => {}}
@@ -71,9 +74,12 @@ export const SignInCard = () => {
           </Button>
         </div>
 
-        <p className="text-xs text-muted-foreground">
+        <p className="select-none text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <span className="cursor-pointer text-sky-700 hover:underline">
+          <span
+            className="cursor-pointer text-sky-700 hover:underline"
+            onClick={() => setState("signUp")}
+          >
             Sign up
           </span>
         </p>
